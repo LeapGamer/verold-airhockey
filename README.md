@@ -1,23 +1,19 @@
-# Verold Airhockey
+# LeapGamer.com's Verold Airhockey
 
   HTML5 web-based air hockey game built on [Verold API](http://verold.com),
-  [THREE.js](https://github.com/mrdoob/three.js/), [box2dweb](http://code.google.com/p/box2dweb/) and
-  [Socket.IO](http://socket.io).
+  [THREE.js](https://github.com/mrdoob/three.js/), [box2dweb](http://code.google.com/p/box2dweb/),
+  [Socket.IO](http://socket.io), and [Leap jQuery](http://leapgamer.com/leap_motion_jquery_plugin).
 
   You can play this game live at:
-  [http://airhockey.verold.com](http://airhockey.verold.com)
+  [http://leapgamer.com/game/Air_Hockey](http://leapgamer.com/game/Air_Hockey)
 
 ## Installation
 
-    $ npm install
-
-## Running
-
-    $ node app
+    Extract to your webservers directory. 
 
 ## Usage
 
-  Open http://localhost:3000/ in a browser!
+  Open index.html in a browser!
 
 ## License
 
