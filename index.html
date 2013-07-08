@@ -10,6 +10,27 @@
   <link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="javascripts/jquery-2.0.0.min.js"></script>
+  <script src="javascripts/leap.jquery.js"></script>
+  <script type='text/javascript'>
+		$(document).ready(function() {
+			window.leapConnected = false;
+			var onConnect = function() {
+				
+			}      
+
+			var onFrame = function() {
+				window.leapConnected = true;
+			};
+			
+			var events = {
+				"onFrame" : onFrame,
+				"onConnect" : onConnect
+			};
+
+			$().leap("setEvents",events);
+		});
+  </script>
 </head>
 <body>
   <div id="headers">
@@ -80,8 +101,8 @@
     <p>This demo requires support for webGL.<br />
     Click <a href="http://verold.com/blog/2013/1/2/enabling-webgl-in-your-browser" target="_blank">here</a> to learn more.</p>
   </div>
-  <script src="/javascripts/jquery-2.0.0.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
+  
+  <script src="socket.io/socket.io.js"></script>
   <script type="text/javascript" src="http://assets.verold.com/verold_api/verold_api_v1.0.4.js"></script>
   <script type="text/javascript" src="javascripts/airhockey.js"></script>
 </body>
