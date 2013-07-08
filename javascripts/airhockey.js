@@ -1511,6 +1511,7 @@ var GameClient = window.VAPI.VeroldApp.extend({
 	  //leap control james edit
 	  if(window.leapConnected) {
 		if(leapData.numHands > 0) {
+			/*
 			var thisObj = this;
 			$.each(window.leapData.hands, function(handId, hand) {
 				var xP = hand.palmPosition[0]/-150;
@@ -1522,6 +1523,7 @@ var GameClient = window.VAPI.VeroldApp.extend({
 				
 				var xMin = 0.1;
 				var xMax = 1.15;
+				
 				
 				if(hand.palmPosition[0] < 0) {
 					pos.x -= 0.7;
@@ -1551,6 +1553,56 @@ var GameClient = window.VAPI.VeroldApp.extend({
 				thisObj.positionDirty = true;
 				thisObj.dirtyPosition = pos;
 			});
+			*/
+			
+			var xP = window.leapData.hands[0].palmPosition[0]/-150;
+			var yP = window.leapData.hands[0].palmPosition[2]/-150;
+			/*
+			var pos = {
+				x : xP,
+				y : yP
+			};
+			
+			var xMin = 0.1;
+			var xMax = 1.15;
+			var yMax = 1.24;
+			var yMin = 0;
+			
+			if(pos.y < yMin) pos.y = yMin;
+			if(pos.y > yMax) pos.y = yMax;
+			pos.y = (pos.y <= yMin) ? pos.y : yMin;
+			if(pos.x < xMin) pos.x = xMin;
+			if(pos.x > xMax) pos.x = xMax;
+			
+			this.physics.updatePositionP1(pos);
+			this.positionDirty = true;
+			this.dirtyPosition = pos;
+			*/
+			pos = {
+			  x: (this.tableWidth / 2) + xP,
+			  y: yP
+			};
+
+			if (this.mode === 'p1') {
+			  //pos.x -= 0.1;
+			  //pos.y -= 0.1;
+			  pos.y = (pos.y <= 0) ? pos.y : 0;
+
+			  this.physics.updatePositionP1(pos);
+			} else {
+			  pos.x -= 1;
+			  pos.y += 0.2;
+			   pos.y = pos.y*-1;
+			  pos.y = (pos.y >= 0) ? pos.y : 0;
+			  pos.x = pos.x*-1;
+			 
+
+			  this.physics.updatePositionP2(pos);
+
+			}
+
+			this.positionDirty = true;
+			this.dirtyPosition = pos;
 		}
 	  }
 	  //end leap control james edit
@@ -1572,7 +1624,7 @@ var GameClient = window.VAPI.VeroldApp.extend({
   onMouseMove: function(event) {
     var vector, raycaster, intersects, pos;
 	
-    if ((this.mode === 'p1' || this.mode === 'p2') && !leapConnected) {
+    if ((this.mode === 'p1' || this.mode === 'p2')) {
       vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
       this.projector.unprojectVector( vector, this.camera.getCamera() );
       raycaster = new THREE.Raycaster( this.camera.getCamera().position, vector.sub( this.camera.getCamera().position ).normalize() );
