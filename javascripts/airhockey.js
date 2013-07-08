@@ -1554,9 +1554,10 @@ var GameClient = window.VAPI.VeroldApp.extend({
 				thisObj.dirtyPosition = pos;
 			});
 			*/
-			
-			var xP = window.leapData.hands[0].palmPosition[0]/-150;
-			var yP = window.leapData.hands[0].palmPosition[2]/-150;
+			//negative number the bigger it is the less sensitive it is
+			var sensitivity = -200;
+			var xP = window.leapData.hands[0].palmPosition[0]/sensitivity;
+			var yP = window.leapData.hands[0].palmPosition[2]/sensitivity;
 			/*
 			var pos = {
 				x : xP,
